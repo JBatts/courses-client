@@ -1,3 +1,4 @@
+
 <body>
     <table>
         <thead>
@@ -9,30 +10,20 @@
         <tbody id="coursesBody"></tbody>
     </table>
 
-    <script>
-        const urlParams = new URLSearchParams(location.search);
-        const id = urlParams.get("courseid");
-        document.write(id);
+<script>
+    const urlParams = new URLSearchParams(location.search);
+    const id = urlParams.get("courseid");
+    document.write(id);
 
-        document.addEventListener("DOMContentLoaded", async () => {
-            const response = await fetch("http://127.0.0.1:8081/api/courses/"+id); //GET endpoint (path to a resourse)
-            const c = await response.json(); //calls JSON.parse() for us
+    document.addEventListener("DOMContentLoaded", async ()=> {
+            const response = await fetch("http://127.0.0.1:8081/api/courses/"+id) // GET endpoint/URL (path to a resource)
+            const data = await response.json(); // calls JSON.parse() for us
             coursesBody.innerHTML = `
-                <tr>
-                    <td>${c.courseName}</td>
-                    <td>${c.instructor}</td>
-                </tr>
+            <tr>
+                <td>${data.courseName}</td>
+                <td>${data.instructor}</td>
+            </tr>
             `;
-        });//end loaded
-
-        //           {
-        //     "id": 1,
-        //     "dept": "CompSci",
-        //     "courseNum": 101,
-        //     "courseName": "HTML5 and CSS3",
-        //     "instructor": "Rob",
-        //     "startDate": "July 8",
-        //     "numDays": 10
-        //   },
-    </script>
+        }); // Ends load
+</script>
 </body>
